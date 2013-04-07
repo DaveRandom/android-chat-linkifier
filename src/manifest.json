@@ -1,0 +1,40 @@
+{
+  "name": "Android manual linkifier",
+  "version": "0.0.0.1",
+  "manifest_version": 2,
+  "description": "Linkify function references in Android chat",
+  "background": {
+    "scripts": [
+      "LookupCache.js",
+      "PendingMessage.js",
+      "PendingMessageTracker.js",
+      "background.js"
+    ]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://chat.stackoverflow.com/rooms/1/*",
+        "http://chat.stackoverflow.com/rooms/15/*"
+      ],
+      "js": [
+        "ChromeExtensionRelay.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "*://android-manual.herokuapp.com/*"
+  ],
+  "web_accessible_resources": [
+    "ChromeExtensionRelay.js",
+    "QueryString.js",
+    "LinkifyPattern.js",
+    "LinkifiedMessage.js",
+    "inject.js"
+  ],
+  "update_url": "https://github.com/DaveRandom/android-chat-linkifier/raw/master/update.xml"
+}
